@@ -1,0 +1,35 @@
+{
+    "name": "onatal/zorgmail-addressbook-client",
+    "description": "Wrapper for json api",
+    "keywords": ["ZorgMail", "json"],
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Joost Faassen",
+            "email": "j.faassen@grow-services.net",
+            "homepage": "http://www.grow-services.net",
+            "role": "Developer"
+        },
+        {
+            "name": "EriK Scheepers",
+            "email": "e.scheepers@onatal.nl",
+            "homepage": "http://www.onatal.nl",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "e-mail": "support@onatal.nl",
+        "issues": "https://github.com/onatal/zorgmail-addressbook-client/issues"
+    },
+    "require": {
+        "symfony/console": "2.4.*@dev",
+        "guzzlehttp/guzzle": "5.0.*@dev"
+    },
+    "bin": ["bin/zorgmail-addressbook-client"],
+    "autoload": {
+        "psr-4": {
+            "ZorgMail\\AddressBook\\": "src/"
+        }
+    }
+}
