@@ -23,8 +23,8 @@
         "issues": "https://github.com/onatal/zorgmail-addressbook-client/issues"
     },
     "require": {
-        "symfony/console": "2.4.*@dev",
-        "guzzlehttp/guzzle": "5.0.*@dev"
+        "symfony/console": "~2.4",
+        "guzzlehttp/guzzle": "~5.0"
     },
     "bin": ["bin/zorgmail-addressbook-client"],
     "autoload": {
