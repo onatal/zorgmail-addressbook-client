@@ -13,19 +13,44 @@ class Client
 
     public function search($keyword)
     {
-        $client = new GuzzleClient();
-        $res = $client->get('https://api.zorgmail.nl/addressbook/v1/edi/?q='.$keyword.'&start=1&rows=100', ['auth' =>  [$this->username, $this->password]]);
-        //echo $res->getStatusCode();
-        //echo $res->getHeader('content-type');
-        //echo $res->getBody();
-        //var_export($res->json());
+        $start = 1;
+        $rows = 100;
+        $data = false;
         $contacts = array();
-        $data = $res->json();
-        foreach ($data['addresses'] as $row) {
-            echo $row['id'];
-            $contact = new Contact();
-            $contact->setId($row['id']);
-            $contacts[] = $contact;
+        while ($start==1 || $data['numFound']>$start) {
+            $client = new GuzzleClient();
+            $res = $client->get('https://api.zorgmail.nl/addressbook/v1/edi/?q='.$keyword.'&start='.$start.'&rows='.$rows, ['auth' =>  [$this->username, $this->password]]);
+            //echo $res->getStatusCode();
+            //echo $res->getHeader('content-type');
+            //echo $res->getBody();
+            $data = $res->json();
+            if ($data['numFound']>0) {
+                foreach ($data['addresses'] as $row) {
+                    $contact = new Contact();
+                    $contact->setId($row['id']);
+                    $contact->setDisplayName($row['displayName']);
+                    $contact->setMailAddress($row['mailAddress']);
+                    $contact->setRole($row['role']);
+                    $contact->setZvAgbCode($row['zvAgbCode']);
+                    $contact->setGender($row['gender']);
+                    $contact->setSurname($row['surname']);
+                    $contact->setInitials($row['initials']);
+                    $contact->setPrefix($row['prefix']);
+                    $contact->setDepartment($row['department']);
+                    $contact->setOrganizationId($row['organizationId']);
+                    $contact->setPrAgbCode($row['prAgbCode']);
+                    $contact->setOrganizationType($row['organizationType']);
+                    $contact->setOrganization($row['organization']);
+                    $contact->setStreet($row['street']);
+                    $contact->setHouseNumber($row['houseNumber']);
+                    $contact->setPostalCode($row['postalCode']);
+                    $contact->setLocality($row['locality']);
+                    $contact->setCountry($row['country']);
+                    $contact->setTelephoneNumber($row['telephoneNumber']);
+                    $contacts[] = $contact;
+                }
+            }
+            $start += $rows;
         }
         return $contacts;
     }
