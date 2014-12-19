@@ -27,26 +27,66 @@ class Client
             if ($data['numFound']>0) {
                 foreach ($data['addresses'] as $row) {
                     $contact = new Contact();
-                    $contact->setId($row['id']);
-                    $contact->setDisplayName($row['displayName']);
-                    $contact->setMailAddress($row['mailAddress']);
-                    $contact->setRole($row['role']);
-                    $contact->setZvAgbCode($row['zvAgbCode']);
-                    $contact->setGender($row['gender']);
-                    $contact->setSurname($row['surname']);
-                    $contact->setInitials($row['initials']);
-                    $contact->setPrefix($row['prefix']);
-                    $contact->setDepartment($row['department']);
-                    $contact->setOrganizationId($row['organizationId']);
-                    $contact->setPrAgbCode($row['prAgbCode']);
-                    $contact->setOrganizationType($row['organizationType']);
-                    $contact->setOrganization($row['organization']);
-                    $contact->setStreet($row['street']);
-                    $contact->setHouseNumber($row['houseNumber']);
-                    $contact->setPostalCode($row['postalCode']);
-                    $contact->setLocality($row['locality']);
-                    $contact->setCountry($row['country']);
-                    $contact->setTelephoneNumber($row['telephoneNumber']);
+                    if (isset($row['id'])) {
+                        $contact->setId($row['id']);
+                    }
+                    if (isset($row['displayName'])) {
+                        $contact->setDisplayName($row['displayName']);
+                    }
+                    if (isset($row['mailAddress'])) {
+                        $contact->setMailAddress($row['mailAddress']);
+                    }
+                    if (isset($row['role'])) {
+                        $contact->setRole($row['role']);
+                    }
+                    if (isset($row['zvAgbCode'])) {
+                        $contact->setZvAgbCode($row['zvAgbCode']);
+                    }
+                    if (isset($row['gender'])) {
+                        $contact->setGender($row['gender']);
+                    }
+                    if (isset($row['surname'])) {
+                        $contact->setSurname($row['surname']);
+                    }
+                    if (isset($row['initials'])) {
+                        $contact->setInitials($row['initials']);
+                    }
+                    if (isset($row['prefix'])) {
+                        $contact->setPrefix($row['prefix']);
+                    }
+                    if (isset($row['department'])) {
+                        $contact->setDepartment($row['department']);
+                    }
+                    if (isset($row['organizationId'])) {
+                        $contact->setOrganizationId($row['organizationId']);
+                    }
+                    if (isset($row['prAgbCode'])) {
+                        $contact->setPrAgbCode($row['prAgbCode']);
+                    }
+                    if (isset($row['organizationType'])) {
+                        $contact->setOrganizationType($row['organizationType']);
+                    }
+                    if (isset($row['organization'])) {
+                        $contact->setOrganization($row['organization']);
+                    }
+                    if (isset($row['street'])) {
+                        $contact->setStreet($row['street']);
+                    }
+                    if (isset($row['houseNumber'])) {
+                        $contact->setHouseNumber($row['houseNumber']);
+                    }
+                    if (isset($row['postalCode'])) {
+                        $contact->setPostalCode($row['postalCode']);
+                    }
+                    if (isset($row['locality'])) {
+                        $contact->setLocality($row['locality']);
+                    }
+                    if (isset($row['country'])) {
+                        $contact->setCountry($row['country']);
+                    }
+                    if (isset($row['telephoneNumber'])) {
+                        $contact->setTelephoneNumber($row['telephoneNumber']);
+                    }
                     $contacts[] = $contact;
                 }
             }
