@@ -22,8 +22,9 @@ class Client
             $res = $client->get('https://api.zorgmail.nl/addressbook/v1/edi/?q='.$keyword.'&start='.$start.'&rows='.$rows, ['auth' =>  [$this->username, $this->password]]);
             //echo $res->getStatusCode();
             //echo $res->getHeader('content-type');
-            //echo $res->getBody();
-            $data = $res->json();
+            $json = $res->getBody();
+            $data = json_decode($json, true);
+            //$data = $res->json();
             if ($data['numFound']>0) {
                 foreach ($data['addresses'] as $row) {
                     $contact = new Contact();
